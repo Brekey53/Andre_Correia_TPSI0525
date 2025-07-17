@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extinção - O Fim dos Dodôs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Estrelas de fundo */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Meteorito */
+        .meteorite {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #ff6b35, #ff8e53);
+            border-radius: 50% 10% 50% 10%;
+            top: -100px;
+            right: -100px;
+            animation: meteorFall 4s ease-in infinite;
+            z-index: 10;
+            box-shadow: 0 0 20px #ff6b35;
+        }
+
+        .meteorite::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 30px;
+            background: #ffaa00;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #ffaa00;
+        }
+
+        .meteorite::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            width: 200px;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b35, transparent);
+            transform: translateY(-50%);
+            border-radius: 2px;
+        }
+
+        @keyframes meteorFall {
+            0% {
+                top: -100px;
+                right: -100px;
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                top: 100vh;
+                right: 100vw;
+                opacity: 0;
+            }
+        }
+
+        /* Explosão */
+        .explosion {
+            position: absolute;
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #ff6b35 0%, #ff8e53 40%, transparent 70%);
+            animation: explode 2s ease-out infinite;
+            z-index: 5;
+            opacity: 0;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: translateX(-50%) scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: translateX(-50%) scale(1.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-50%) scale(3);
+                opacity: 0;
+            }
+        }
+
+        /* Conteúdo principal */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 0;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: titleGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            from { text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+            to { text-shadow: 2px 2px 20px rgba(255,107,53,0.8); }
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .text-section {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .text-section h2 {
+            color: #ff6b35;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .text-section p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .dodo-image {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .dodo-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            border: 3px solid #ff6b35;
+            box-shadow: 0 0 20px rgba(255,107,53,0.5);
+        }
+
+        .timeline {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            margin-top: 40px;
+        }
+
+        .timeline h2 {
+            color: #ff6b35;
+            margin-bottom: 20px;
+            font-size: 2em;
+            text-align: center;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            border-left: 4px solid #ff6b35;
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: #ff6b35;
+            width: 100px;
+            margin-right: 20px;
+        }
+
+        .warning {
+            background: rgba(255,0,0,0.2);
+            border: 2px solid #ff6b35;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            .meteorite {
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Estrelas de fundo -->
+    <div class="stars"></div>
+
+    <!-- Meteorito -->
+    <div class="meteorite"></div>
+
+    <!-- Explosão -->
+    <div class="explosion"></div>
+
+    <div class="container">
+        <header>
+            <h1>🦤 EXTINÇÃO 🦤</h1>
+            <p class="subtitle">O Fim Trágico dos Dodôs</p>
+        </header>
+
+        <div class="content">
+            <div class="text-section">
+                <h2>🌍 O Que Aconteceu?</h2>
+                <p>O dodô (Raphus cucullatus) foi uma ave não voadora endémica da ilha Maurícia, no Oceano Índico. Esta espécie única desapareceu para sempre no final do século XVII, tornando-se um dos símbolos mais conhecidos da extinção causada pela ação humana.</p>
+                
+                <p>A extinção dos dodôs foi resultado de múltiplos fatores: a caça excessiva pelos colonos, a destruição do seu habitat natural, e principalmente a introdução de espécies invasoras como porcos, ratos e macacos que destruíam os ninhos e competiam por alimentos.</p>
+                
+                <p>Em apenas 174 anos após a chegada dos humanos à Maurícia, esta espécie única desapareceu completamente da face da Terra.</p>
+            </div>
+
+            <div class="dodo-image">
+                <img src="./img/dodo1.webp" alt="Imagem de um Dodô" style="border: 3px solid #ff6b35;">
+                <p style="margin-top: 15px; font-style: italic;">O último dodô conhecido</p>
+            </div>
+        </div>
+
+        <div class="timeline">
+            <h2>📅 Cronologia da Extinção</h2>
+            <div class="timeline-item">
+                <div class="timeline-date">1598</div>
+                <div>Primeira observação registada de dodôs pelos navegadores holandeses</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">1600-1650</div>
+                <div>Período de caça intensiva e colonização da ilha Maurícia</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">1662</div>
+                <div>Último avistamento confirmado de um dodô vivo</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">1681</div>
+                <div>Última referência histórica confiável da espécie</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">1800s</div>
+                <div>Confirmação científica da extinção completa da espécie</div>
+            </div>
+        </div>
+
+        <div class="warning">
+            <h2>⚠️ AVISO PARA A HUMANIDADE ⚠️</h2>
+            <p>A extinção dos dodôs serve como um lembrete trágico das consequências das nossas ações sobre a biodiversidade. Milhares de espécies enfrentam hoje o mesmo destino. É urgente agir para proteger o que resta da nossa preciosa fauna!</p>
+        </div>
+    </div>
+
+    <script>
+        // Criar estrelas aleatórias
+        function createStars() {
+            const starsContainer = document.querySelector('.stars');
+            const numStars = 100;
+            
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Criar efeito de explosão periodicamente
+        function createExplosion() {
+            const explosion = document.querySelector('.explosion');
+            
+            setInterval(() => {
+                explosion.style.animationDelay = '2s';
+                explosion.style.opacity = '1';
+                
+                setTimeout(() => {
+                    explosion.style.opacity = '0';
+                }, 2000);
+            }, 6000);
+        }
+
+        // Inicializar efeitos
+        createStars();
+        createExplosion();
+
+        // Adicionar efeito de tremor quando o meteorito "cai"
+        setInterval(() => {
+            document.body.style.animation = 'shake 0.5s';
+            setTimeout(() => {
+                document.body.style.animation = '';
+            }, 500);
+        }, 4000);
+
+        // CSS para o efeito de tremor
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-5px); }
+                75% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
