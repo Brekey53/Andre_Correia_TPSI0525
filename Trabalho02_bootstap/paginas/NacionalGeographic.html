@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aspeto e anatomia de um Dodô</title>
+    <link rel="stylesheet" href="../style/styleindex.css">
+    <link rel="shortcut icon" href="../img/iconIMG.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <style>
+        /* Botão voltar */
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            background-color: coral;
+            transition: 0.3s;
+        }
+        .back-button:hover {
+            background-color: #ff6347;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        /* Títulos com gradiente e animação */
+        h2, h3 {
+            text-align: center;
+            background: linear-gradient(90deg, #3498db, #0c32dc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInOut 10s infinite;
+        }
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        /* Imagens responsivas e hover */
+        img {
+            border-radius: 10px;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Efeito vidro */
+        .bg-glass {
+            background: rgba(255, 255, 255, 0.7);  
+            backdrop-filter: blur(10px);           
+            -webkit-backdrop-filter: blur(10px);   
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+
+        body {
+            background: linear-gradient(75deg, white, beige, azure);
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .text-justify {
+            text-align: justify;
+        }
+    </style>
+</head>
+<body>
+    <main class="container py-4">
+
+        <div class="bg-glass text-justify">
+            <h2>Outras Informações</h2>
+            <img src="../img/d3.png" alt="Dodô">
+            <p>A imagem da ave extinta que não voa inspirou artistas e alimentou lendas durante séculos, mas com o tempo torna-se mais nítida. Ferramentas científicas modernas e fósseis recém-descobertos estão a fornecer aos cientistas novos dados sobre a anatomia e ciclo de vida desta ave misteriosa da ilha Maurícia.</p>
+        </div>
+
+        <div class="bg-glass text-justify">
+            <h3>Relatos da Época</h3>
+            <p>Com base em relatos iniciais de marinheiros, esboços e pinturas de dodós em cativeiro, a imagem da ave deu uma guinada fantástica. Em 1600, os retratos cómicos de uma ave atarracada tornaram-se o padrão para futuros clássicos como “Aventuras de Alice no País das Maravilhas”.</p>
+            <img src="../img/d6.png" alt="Evolução do Dodô" height="90">
+        </div>
+
+        <div class="bg-glass text-justify">
+            <h3>Ciclo de Vida de um Dodô</h3>
+            <img src="../img/d4.png" alt="Ciclo de vida de um Dodô" height="325">
+        </div>
+
+        <footer class="text-center">
+            <a href="../index.html" class="back-button">Voltar à página anterior</a>
+        </footer>
+
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

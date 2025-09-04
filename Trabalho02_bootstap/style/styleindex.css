@@ -1,0 +1,53 @@
+
+        body
+        {
+            background: linear-gradient(75deg, white, beige, azure);
+        }
+
+        .text-justify 
+        {
+            text-align: justify;
+        }
+
+        h1 {
+            color: #052f58;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+            animation: titleGlow 2s ease-in-out infinite alternate;
+            background: linear-gradient(90deg, #052f58, #3498db);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        @keyframes titleGlow {
+            from { text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); }
+            to   { text-shadow: 0 0 20px rgba(52, 152, 219, 0.8); }
+        }   
+
+        h3 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-align: center;
+            background: linear-gradient(90deg, #3498db, #0c32dc);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInOut 10s infinite;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        section {
+        scroll-margin-top: 90px;
+        }
+
+        .bg-glass {
+            background: rgba(255, 255, 255, 0.7);  
+            backdrop-filter: blur(10px);           
+            -webkit-backdrop-filter: blur(10px);   
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
